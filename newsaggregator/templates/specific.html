@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News</title>
+    {% csrf_token %}
+    <style>
+
+header {
+    background-color: #007BFF;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Style for the heading */
+h1 {
+    font-size: 75px;
+    margin-bottom: 16px;
+}
+
+/* Additional styles for overall page layout (adjust as needed) */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.news-container {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-top: 20px;
+    margin-right: 20px; 
+    margin-bottom: 20px;/* Add margin between containers */
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+    width: 100%; 
+}
+
+/* Image styling */
+.news-image {
+    width:100%;
+    height: auto;
+    max-height: 300px; /* Adjust as needed */
+    object-fit: cover;
+}
+
+/* Headline styling */
+.news-headline {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 10px;
+}
+
+/* Link styling */
+.news-link {
+    color: #000000;
+    text-decoration: none;
+    margin: 10px;
+    transition: color 0.3s ease-in-out;
+}
+
+.news-link:hover {
+    color: #ffffff;
+}
+.news-container-wrapper{
+    display: flex;
+    flex-wrap: wrap; /* Allow containers to wrap to the next line if needed */
+    justify-content: space-between;
+}
+  
+    </style>
+</head>
+<body>
+    <h1>INDIA NEWS</h1>
+    <div class="container">
+        <div class="news-container-wrapper">
+            
+            <div class="news-container">
+            <h1 class="news-headline">{{data.content}}</h1>
+            {% if data.img_url %}
+            <img class="news-image" src="{{data.img_url}}">
+            {%endif%}  
+            <h3>{{data.content_url}}</h3>
+              
+            </div>
+            
+            </div>
+        </div>
+    </body>
+    <script></script>
+    </html>
