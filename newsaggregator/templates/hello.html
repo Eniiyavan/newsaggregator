@@ -118,7 +118,7 @@ button:hover {
 <body>
     <h1>INDIA NEWS</h1>
     <div class="container">
-    <form id="myForm" action="/news_aggregator/" method="POST">
+    <form id="myForm" action="/" method="POST">
         {% csrf_token %}
         <!-- other form fields go here -->
         <label for="inputData">Enter City Name:</label>
@@ -144,7 +144,7 @@ button:hover {
 <script>
 
 function getData(url) {
-    fetch("/news_aggregator/scrape/?url=" + encodeURIComponent(url))
+    fetch("/scrape/?url=" + encodeURIComponent(url))
         .then(response => {
             if (!response.ok) {
                 window.location.href=url;
@@ -155,7 +155,7 @@ function getData(url) {
         })
         .then(data => {
             // Assuming data contains information needed for the redirect
-            const redirectUrl = "/news_aggregator/scrape/?url=" + encodeURIComponent(url) ;
+            const redirectUrl = "/scrape/?url=" + encodeURIComponent(url) ;
             //console.log(data);
             // Redirect to the new page
            window.location.href = redirectUrl;

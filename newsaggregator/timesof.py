@@ -16,30 +16,33 @@ def send_Data(city):
     news_container = soup.find_all("figcaption")
     count=0
     result=[]
+    result1=[]
     for i in news_container:
         p=i.parent
         j=p.find("img")
-        if(p and j):
-            if ('href' in p.attrs and "data-src" in j.attrs):
+        if(p or j):
+            if ('href' in p.attrs):
                 count+=1
                 content_url=p['href']
+                img_url=None
+            if(j is not None):
                 img_url=j['data-src']
                 
-                if(img_url=="https://static.toiimg.com/thumb/imgsize-78512008,msid-47529300,width-600,resizemode-4/47529300.jpg"):
-                    a={
-                    "img_url":None,
-                    "content":i.string,
-                    "content_url":content_url
-                    }
-                    result.append(a)
-                
-                else:
-                    a={
-                    "img_url":img_url,
-                    "content":i.string,
-                    "content_url":content_url
-                    }
-                    result.append(a)
+            if(img_url=="https://static.toiimg.com/thumb/imgsize-78512008,msid-47529300,width-600,resizemode-4/47529300.jpg" or img_url==None):
+                a={
+                "img_url":None,
+                "content":i.string,
+                "content_url":content_url
+                }
+                result.append(a)
+            
+            else:
+                a={
+                "img_url":img_url,
+                "content":i.string,
+                "content_url":content_url
+                }
+                result1.append(a)
     
     response1=requests.get(url1)
     soup1=BeautifulSoup(response1.text,'html.parser')
@@ -55,6 +58,7 @@ def send_Data(city):
             }
         
             result.append(a)
+    result=result+result1
     
     return result
 

@@ -10,7 +10,6 @@ from django.views.decorators.csrf import csrf_exempt
 def display_data(request):
     if(request.method=='POST'):
         city=request.POST.get('city')
-        print(city)
         a=timesof.send_Data(city)
         return render(request,'hello.html',{'data':a})
     else:
@@ -21,7 +20,6 @@ def display_data(request):
 def scrape(request):
     url1=request.GET.get('url','')
     a=timesof.send_specific(url1)
-    print(a)
     b= render(request,'specific.html',{'data':a})
     return b
     #return redirect('specific_page', content=a['content'], img_url=a['img_url'], content_url=a['content_url'])
@@ -33,3 +31,5 @@ def specific_page(request, data):
     content_url = request.GET.get('content_url', '')
 
     return render(request, 'specific.html', {'content': content, 'img_url': img_url, 'content_url': content_url})
+
+
